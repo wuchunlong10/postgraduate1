@@ -1,0 +1,54 @@
+.top{
+			position: absolute;
+			top: 0px;
+			width: 1350px;
+			height: 77px;
+			text-align: center;
+			color: #ccffff;
+			left:0px;
+			background-color: #55BBFF;
+			right:0px;
+		}
+		.title {
+				float:left;
+			    margin:-32px 20px;
+				font-size: 40px;
+				color: #FFFFFF;
+				font-height: 55px;
+				font-family: ¡• È;
+				
+			}
+		.logo {
+			    position: absolute;
+			    left: 1%;
+			    width: 5%;
+			}
+		h1{
+			position: absolute;
+			left:45%;
+			top:60px;
+			color:red;
+		}
+		h4{
+			position: absolute;
+			left:850px;
+			top:110px;
+			width: 350px;
+		}
+		h3{
+			position: absolute;
+			font-size: 40px;
+			font-family: ø¨ÃÂ;
+			color:white;
+			left:100px
+		}
+		span{
+			position: absolute;
+			top:180px;
+			width:1350px;
+		}
+		#btnClose{
+			position: absolute;
+			bottom:40px;
+			left:47%;
+		}

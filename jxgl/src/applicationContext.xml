@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+	
+	<context:component-scan base-package="web2017.team3.dao"></context:component-scan>
+	<context:component-scan base-package="web2017.team3.service"></context:component-scan>
+
+	<mvc:interceptors>
+	   <!-- 日志拦截器 -->
+	   <mvc:interceptor>
+	    <mvc:mapping path="/*" />
+	    <bean class="web2017.team3.common.MyInterceptor" />
+	   </mvc:interceptor>
+	 </mvc:interceptors>
+
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close"
+		p:driverClassName="com.mysql.jdbc.Driver"
+		p:url="jdbc:mysql:///team3?useUnicode=true&amp;characterEncoding=UTF-8"
+		p:username="root"
+		p:password="1230"/>	
+	
+	<!-- 注入jdbcTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
+		p:dataSource-ref="dataSource"></bean>
+	
+	
+	
+	
+	 <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+      <!--<bean id="multipartResolver"
+         class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+         <property name="defaultEncoding" value="UTF-8" />-->
+         <!-- 指定所上传文件的总大小,单位字节。注意maxUploadSize属性的限制不是针对单个文件，而是所有文件的容量之和-->
+       <!--  <property name="maxUploadSize" value="10240000" />
+     </bean>-->
+	
+<!-- Dao层
+	<bean id="studentDao" class="web2017.team3.dao.StudentDao"></bean>
+	<bean id="teacherDao" class="web2017.team3.dao.TeacherDao"></bean>
+	<bean id="adminDao" class="web2017.team3.dao.AdminDao"></bean>
+	Service层
+	<bean id="loginController" class="web2107.team3.controller.LoginController"></bean>
+	<bean id="studentService" class="web2017.team3.service.StudentService"></bean>
+	<bean id="teacherService" class="web2017.team3.service.TeacherService"></bean>
+	<bean id="adminService" class="web2017.team3.service.AdminService"></bean>
+ -->
+	
+	<!-- <bean id="checkImgAction" class="web2017.team3.common.CheckImgAction" scope="prototype"></bean> -->
+</beans>
